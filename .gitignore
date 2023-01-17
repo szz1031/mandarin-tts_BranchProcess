@@ -14,3 +14,7 @@ synth
 **/.ipynb_checkpoints/**
 **/__pycache__/
 mtts.egg-info/
+*.png
+*.wav
+*.wav
+*.wav

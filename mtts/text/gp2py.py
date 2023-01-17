@@ -10,7 +10,7 @@ SPECIAL_NOTES = '。？！?!.;；:,，:'
 
 
 def read_vocab(file: os.PathLike) -> List[str]:
-    with open(file) as f:
+    with open(file,encoding='UTF-8') as f:
         vocab = f.read().split('\n')
         vocab = [v for v in vocab if len(v) > 0 and v != '\n']
     return vocab
