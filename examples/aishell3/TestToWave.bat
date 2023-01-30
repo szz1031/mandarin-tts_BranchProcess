@@ -1,0 +1,1 @@
+python ../../mtts/synthesize.py  -d cpu -c config.yaml --checkpoint ./checkpoints/checkpoint_1350000.pth.tar -i temp.txt

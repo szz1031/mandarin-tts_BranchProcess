@@ -1,0 +1,1 @@
+python mtts/text/gp2py.py -t "这是LSA语音生成工具的第一次测试"

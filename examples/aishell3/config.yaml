@@ -145,18 +145,18 @@ f0_predictor:
 vocoder:
   type: VocGan # choose one of the following
   MelGAN:
-    checkpoint: ~/checkpoints/melgan/melgan_ljspeech.pth
-    config: ~/checkpoints/melgan/default.yaml
+    checkpoint: D:\GitHub\mandarin-tts_BranchProcess\examples\aishell3\checkpoints/melgan/melgan_ljspeech.pth
+    config: D:\GitHub\mandarin-tts_BranchProcess\examples\aishell3\checkpoints/melgan/default.yaml
     device: cpu
   VocGan:
-    checkpoint: ~/checkpoints/vctk_pretrained_model_3180.pt #~/checkpoints/ljspeech_29de09d_4000.pt
+    checkpoint: D:\GitHub\mandarin-tts_BranchProcess\examples\aishell3\checkpoints/vctk_pretrained_model_3180.pt #~/checkpoints/ljspeech_29de09d_4000.pt
     denoise: True
     device: cpu
   HiFiGAN:
-    checkpoint: ~/checkpoints/VCTK_V3/generator_v3  # you need to download checkpoint and set the params here
+    checkpoint: D:\GitHub\mandarin-tts_BranchProcess\examples\aishell3\checkpoints/VCTK_V3/generator_v3  # you need to download checkpoint and set the params here
     device: cpu
   Waveglow:
-    checkpoint:  ~/checkpoints/waveglow_256channels_universal_v5_state_dict.pt
+    checkpoint:  D:\GitHub\mandarin-tts_BranchProcess\examples\aishell3\checkpoints/waveglow_256channels_universal_v5_state_dict.pt
     sigma: 1.0
     denoiser_strength: 0.0 # try 0.1
     device: cpu #try cpu if out of memory

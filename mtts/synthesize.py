@@ -55,7 +55,7 @@ if __name__ == '__main__':
     parser.add_argument('--output_dir', type=str, default='./outputs/')
     parser.add_argument('--checkpoint', type=str, required=True, default='')
     parser.add_argument('-c', '--config', type=str, default='./config.yaml')
-    parser.add_argument('-d', '--device', choices=['cuda', 'cpu'], type=str, default='cuda')
+    parser.add_argument('-d', '--device', choices=['cuda', 'cpu'], type=str, default='cpu')  # 默认改成cpu
     args = parser.parse_args()
 
     if not os.path.exists(args.output_dir):
@@ -81,7 +81,7 @@ if __name__ == '__main__':
     torch.set_grad_enabled(False)
 
     try:
-        lines = open(args.input).read().split('\n')
+        lines = open(args.input,encoding='utf-8').read().split('\n')
     except:
         print('Failed to open text file', args.input)
         print('Treating input as text')
