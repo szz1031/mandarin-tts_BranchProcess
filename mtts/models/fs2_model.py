@@ -25,7 +25,7 @@ def __read_vocab(file):
 
 
 def _get_layer(emb_config: dict):  # -> Optional[List[nn.Module],List[float]]:
-    logger.info(f'building embedding with config: {emb_config}')
+    #logger.info(f'building embedding with config: {emb_config}')
     if emb_config['enable']:
         if emb_config['vocab'] is None:
             vocab_size = emb_config['vocab_size']

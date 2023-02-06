@@ -14,7 +14,7 @@ class TextProcessor():
             if key.startswith('emb_type'):
                 emb_tok = Tokenizer(conf[key]['vocab'])
                 self.emb_tokenizers += [emb_tok]
-                logger.info('processed emb {}'.format(conf[key]['_name']))
+                #logger.info('processed emb {}'.format(conf[key]['_name']))
 
     def _process(self, input: str):
         segments = input.split('|')
