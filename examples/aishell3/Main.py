@@ -116,14 +116,14 @@ def CleanText(text:str)->str:
     if _str=='' or _str==None:
         return""
     
-    print(_str)
+    #print(_str)
     return _str
 
 def TextGen(text:str,filename='test0',speakerId='0')->str:
     '''
     将文本转化为拼音并且格式化
     '''
-    text=CleanText(text)
+    #text=CleanText(text)
     
     tn = TextNormal('gp.vocab', 'py.vocab', add_sp1=True, fix_er=True)
     py_list, gp_list = tn.gp2py(text)
@@ -287,9 +287,13 @@ def ProcessCsv(filePath):
         speaker=item[4]#[:-2].split('"')[-1]
         text=item[5]#[:-2].split('"')[-1]
         print (speaker + ":" +text)
+        text=CleanText(text)
+        if text=="" or text=="None":
+            print("----判定为语气词，不生成wave")
+            continue
         text2=TextGen(text,truename,nameToSpeakerId(speaker))
-        textList.append(text2)
-        _eventData.append([item[0],truename])
+        textList.append(text2) # 打包拼音信息
+        _eventData.append([item[0],truename])  # 打包命名信息
     
     TextToWave_Branch(textList,rootPath+"/outputs/")
     #print(_eventData)
@@ -305,17 +309,19 @@ def reWriteCsv(datalist,filePath):
     # df.reset_index(inplace=True)
     # pprint(df)
     # 莫名其妙会读出小数点
-    _index_type=df.index.inferred_type
-    print("index type="+str(_index_type))
+    _index_type=df.index.inferred_type   # csv 的index可能是数字 也可能是字符，需要做判断
+    #print("index type="+str(_index_type))
     
     path,filename=os.path.split(filePath)
     for item in datalist:
         #print(type(item[0]))
         if str(_index_type)=="integer":
             df.loc[ int(item[0]),'SoundPath']=makeAkEventPath(item[1], filename[12:-4]) # 去掉CSV的前缀和后缀
-        if str(_index_type)=="str":
+        if str(_index_type)=="str" or str(_index_type)=="mixed":
             df.loc[ str(item[0]),'SoundPath']=makeAkEventPath(item[1], filename[12:-4]) # 去掉CSV的前缀和后缀
-        
+        if str(_index_type)!="integer" and str(_index_type)!="str" and str(_index_type)!="mixed":
+            print("! unkown index type: "+str(_index_type))
+            return
     df.to_csv(filePath,encoding='utf-8')
     logger.info("Processing Finished")
     pass
